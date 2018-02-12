@@ -2,6 +2,7 @@
 import csv
 # Load the KBC library to process the config file
 from keboola import docker
+from os import listdir
 cfg = docker.Config('/data/')
 params = cfg.get_parameters()
 
@@ -36,3 +37,7 @@ with open('/data/in/tables/source.csv', mode='rt', encoding='utf-8') as in_file,
                 newRow[key] = row[key] + ''.join([params['sound']] * params['repeat'])
             odd_writer.writerow(newRow)
         i = i + 1
+
+mypath = '/data/in/tables'
+onlyfiles = [f for f in listdir(mypath)]
+print(onlyfiles)
